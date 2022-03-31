@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.mapper.BoardMapper">
+
+	<resultMap type="com.dream.vo.BoardVO" id="boardMap">
+		<id property="bno" column="bno"></id>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="writer" column="writer"/>
+		<result property="regDate" column="regDate"/>
+	</resultMap>
+	
+	<select id="getBoardList" resultMap="boardMap">
+		SELECT * FROM BOARD
+	</select>
+	
+	<insert id="registBoard">
+		INSERT INTO BOARD
+			(title, content, writer, regDate)
+			VALUES (#{title}, #{content}, #{writer}, #{regDate})
+	</insert>
+	
+	<select id="getBoardDetail" resultMap="boardMap">
+		SELECT * FROM BOARD WHERE bno = #{bno}
+	</select>
+	
+	<update id="editBoard">
+		UPDATE BOARD 
+			SET title = #{title}, content = #{content}, writer = #{writer}, regDate = #{regDate}
+			WHERE BNO = #{bno}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM BOARD 
+		WHERE BNO = #{bno}
+	</delete>
+
+</mapper>

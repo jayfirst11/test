@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dream.mapper.MemberMapper">
+
+	<resultMap type="com.dream.vo.MemberVO" id="MemberMap">
+		<id property="id" column="id" />
+		<result property="password" column="password"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	<select id="memberCheck" resultMap="MemberMap">
+		select id, auth from member
+		where id = #{id} and password = #{password}
+	</select>
+
+</mapper>
